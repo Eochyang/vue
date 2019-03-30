@@ -1,31 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <loading v-if="bLoading"></loading>
+    <router-view></router-view>
+    <app-footer></app-footer>
   </div>
 </template>
+<script>
+import AppFooter from "./common/AppFooter";
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+import {mapGetters} from 'vuex';
+import * as types from './store/types.js'
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+export default {
+  components: { AppFooter},
+  computed:mapGetters([
+    'bFoot','bLoading'
+  ]),
+};
+</script>
